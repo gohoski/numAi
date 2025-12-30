@@ -195,7 +195,8 @@ public class FirstTimeActivity extends Activity {
                             //key good!
                             //since we loaded the models, let's select the best model automatically
                             apiConfig.updateChatModel(ModelSelector.selectChatModel(models));
-                            apiConfig.updateThinkingModel(ModelSelector.selectThinkingModel(models));
+                            //Dirty fix but DeepSeek doesn't support thinking on VoidAI for some reason...
+                            apiConfig.updateThinkingModel(spinner.getSelectedItem().toString().equals("VoidAI") ? "gemini-3-flash-preview" : ModelSelector.selectThinkingModel(models));
 
                             // Then report to the user to start chatting
                             ProgressBar loading = (ProgressBar) findViewById(R.id.progress_loader);

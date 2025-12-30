@@ -13,7 +13,7 @@ class ModelSelector {
     //Lists based on price, knowledge and overall usability (e.g. DSv3.2 although is much better than v3.1 it isn't
     // available for chatting on some APIs, while GLM are very powerful models, they don't have good multilingual support,etc.)
     private static final List<String> CHAT_MODELS = Arrays.asList(
-            "deepseek-v3.1-terminus", "deepseek-v3.1", "gemini-3-flash", "deepseek-v3.2",
+            "deepseek-v3.1:671b", "deepseek-v3.2", "deepseek-v3.1", "gemini-3-flash",
             "qwen3-max", "qwen3-vl", "qwen3-next", "kimi-k2", "glm-4.7", "glm-4.6",
             "qwen3-235b", "grok-4-fast", "grok-4", "grok-3", "gpt-5-nano"
     );
