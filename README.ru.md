@@ -2,15 +2,16 @@
 [English](README.md) / **русский**
 
 Простое ИИ-приложение для **Android 1.0+** с поддержкой глубокого мышления, восприятия изображений и множества API. Доступ к ChatGPT, DeepSeek, Gemini, Grok, Qwen, GLM и другим нейросетям в одном простом приложении.
+* **Telegram-канал по проекту**: [@AppDataApps](https://t.me/AppDataApps)
+* Telegram-группа по старым андроидам **[Retro Android](https://t.me/retroandroidgroup/12889)**
 
 ![numAi](img/logo.png "Клиент ИИ для старых Android-устройств")
 
 ![Скриншот](img/scr1.png) ![Скриншот](img/scr2.png) ![Скриншот](img/scr3.png)
-* **Telegram-канал по проекту**: [@AppDataApps](https://t.me/AppDataApps)
-* Telegram-группа по старым андроидам **[Retro Android](https://t.me/retroandroidgroup/12889)**
 
 ## 📥 Скачать
 * [GitHub Releases](https://github.com/gohoski/numAi/releases) *(рекомендуется)*
+* [4PDA](https://4pda.to/forum/index.php?showtopic=1116157)
 * Telegram (ссылка выше)
 
 > [!IMPORTANT]  

@@ -2,15 +2,16 @@
 **English** / [русский](README.ru.md) 
 
 A simple AI app compatible with **Android 1.0+**. Access ChatGPT, DeepSeek, Gemini, Grok, Qwen, GLM, and other LLMs in one simple app on your legacy device.
+* **Telegram channel with updates**: [English @AppDataEN](https://t.me/AppDataEN) / [русский @AppDataApps](https://t.me/AppDataApps)
+* **[Retro Android Group](https://t.me/retroandroidgroup)** on Telegram
 
 ![numAi](img/logo.png "AI client for legacy Android devices")
 
 ![Screenshot](img/scr1.png) ![Screenshot](img/scr2.png) ![Screenshot](img/scr3.png)
-* **Telegram channel with updates**: [English @AppDataEN](https://t.me/AppDataEN) / [русский @AppDataApps](https://t.me/AppDataApps)
-* **[Retro Android Group](https://t.me/retroandroidgroup)** on Telegram
 
 ## 📥 Download
 * [GitHub Releases](https://github.com/gohoski/numAi/releases) *(Recommended)*
+* [4PDA](https://4pda.to/forum/index.php?showtopic=1116157)
 * Telegram (link at the top of the README)
 
 > [!IMPORTANT]  
