@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp">
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/checking_api_key"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:paddingBottom="13dp"
+        android:id="@+id/title"/>
+
+    <ProgressBar
+        android:id="@+id/progress_loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:layout_gravity="center"/>
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/bugdroid"
+        android:layout_gravity="center"
+        android:paddingBottom="16dp"
+        android:id="@+id/bugdroid"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_chatting"
+        android:layout_gravity="center"
+        android:id="@+id/startChatting"
+        android:visibility="gone"/>
+</LinearLayout>

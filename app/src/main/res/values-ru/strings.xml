@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">numAi</string>
+    <string name="about">О программе</string>
+    <string name="api_key">API-ключ</string>
+    <string name="api_key_error">Произошла ошибка, проверьте свой ключ.</string>
+    <string name="api_key_setup">Настройка API-ключа</string>
+    <string name="ask_anything">Спроси что-угодно</string>
+    <string name="back">&lt; Назад</string>
+    <string name="chat_model">Модель общения</string>
+    <string name="checking_api_key">Проверка API-ключа…</string>
+    <string name="cloudflare_msg">Сервисы защиты, такие как Cloudflare, блокируют TLS-подключения от Java 5, так как считают их небезопасными. Большинство ИИ-платформ, включая VoidAI, используют такие защиты, поэтому вы можете не подключиться к ним с вашего устройства.\n\n<b>Вам понадобится использовать другой API</b> — например, Ollama (рекомендуется), Baseten или Upstage. Эти сервисы не блокируют ваше устройство, но регистрация в них может отличаться и быть сложнее.\n\nПодробная инструкция ждёт вас на GitHub-странице numAi.\n</string>
+    <string name="cloudflare_title">Android 1.0–2.2</string>
+    <string name="enter_api_key">Введите ключ…</string>
+    <string name="error">Ошибка:</string>
+    <string name="errorNetwork">Ошибка сети: %s</string>
+    <string name="firsttime_1">numAi позволяет использовать современные нейросети (ChatGPT, DeepSeek, Gemini и др.) на вашем старом андроиде.\n\nДля начала вам понадобится API-ключ. Это приложение поможет вам его получить. Всё, что нужно — это современный смартфон или компьютер.\n\nВ инструкции будет использован бесплатный провайдер VoidAI. Если у вас уже есть ключ или вы используете другого провайдера, нажмите «Пропустить».</string>
+    <string name="firsttime_2">1. В современном браузере перейдите по следующей ссылке и создайте аккаунт:\n<b>voidai.app/register</b>\n2. После входа в систему перейдите в раздел <b>API keys</b> в Dashboard.\n3. Нажмите <b>Generate New API Key</b>.\n4. Скопируйте появившийся ключ и перенесите его на телефон одним из способов:\n\n<b>Способ 1: Передача файлом</b>\n• Создайте текстовый файл и поместите туда ключ.\n• Передайте файл на телефон через USB, Bluetooth, gtrxac.fi/fh или аналогичным способом.\n• <!--На следующем экране импортируйте ключ из этого файла.-->
+        Откройте файл на телефоне, скопируйте ключ и вставьте его.\n\n<b>Способ 2: Через adb</b>\n• На <b>следующем экране</b> нажмите на тесктовое поле и введите ключ с помощью этой команды:\n<b>adb shell input text API_KEY</b></string>
+    <string name="from_file">Из файла</string>
+    <string name="hello_user">Привет, юзер</string>
+    <string name="loading">Загрузка</string>
+    <string name="next">&gt; Далее</string>
+    <string name="settings">Настройки</string>
+    <string name="shrink_thinking">Уменьшить кнопку «Мышление»</string>
+    <string name="shrink_thinking_desc">В некоторых интерфейсах Android 2.x ToggleButton может быть выше обычной кнопки, из-за чего интерфейс выглядит неровным. Эта опция пытается исправить эту проблему (хотя и не идеально).</string>
+    <string name="skip">^ Пропустить</string>
+    <string name="start_chatting">Начать общение</string>
+    <string name="thinking">Мышление</string>
+    <string name="thinking_model">Модель мышления</string>
+    <string name="voidaisetup">Как получить ключ VoidAI</string>
+    <string name="img_count">[изображений: %s]</string>
+    <string name="change_key_pls">API-ключ изменён; прежде чем переключить модель, нажмите ОК и вернитесь в настройки</string>
+    <string name="change_system">Изменить системный промпт</string>
+    <string name="other">Свой…</string>
+    <string name="base_url">Введите base-URL вашего API</string>
+    <string name="welcome">Добро пожаловать!</string>
+    <string name="text_copied">Текст скопирован в буфер обмена</string>
+    <string name="bad_url">Некорректный адрес!</string>
+    <string name="fail_send">Не удалось отправить сообщение: %s</string>
+    <string name="fail_send_vision">Не удалось отправить сообщение: %s. <b>Для восприятия изображений</b> поменяйте модель на Qwen3-VL-235B, GPT-5 или Gemini 3.</string>
+    <string name="update_delay">Задержка обновления интерфейса в миллисекундах</string>
+</resources>

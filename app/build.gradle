@@ -1,0 +1,32 @@
+apply plugin: 'com.android.application'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'numai'
+            keyPassword 'numai'
+        }
+    }
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
+    defaultConfig {
+        applicationId "io.github.gohoski.numai"
+        minSdkVersion 1
+        //noinspection OldTargetApi
+        targetSdkVersion 25
+        versionCode 1
+        versionName "0.1.0"
+        setProperty("archivesBaseName", "numAi-$versionName") //e.g. numAi-0.1.0-release.apk
+    }
+    buildTypes {
+        release {
+            //Optimizations totally work down to API 1 and result in smaller file size.
+            shrinkResources true //reduces apk size removing unused code
+            minifyEnabled true //increase performance optimizing dex files (obfuscation)
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {}

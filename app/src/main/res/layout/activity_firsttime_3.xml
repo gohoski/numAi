@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/api_key_setup"
+                android:textSize="20sp"
+                android:textStyle="bold" android:paddingBottom="8dp"/>
+
+            <Spinner
+                android:id="@+id/provider_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_width="fill_parent">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_api_key"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
+                    android:id="@+id/apiKey"/>
+
+                <!--Not implemented for now-->
+                <Button
+                    android:id="@+id/Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="@string/from_file"
+                    android:visibility="gone">
+                </Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/back"
+            android:id="@+id/back"/>
+
+        <!-- Empty view to take up space between buttons -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:id="@+id/next"/>
+    </LinearLayout>
+</LinearLayout>

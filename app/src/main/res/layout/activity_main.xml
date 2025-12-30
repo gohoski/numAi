@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/messages_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/input_layout"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:padding="8dp"
+        android:stackFromBottom="false"
+        android:cacheColorHint="@color/background"
+        android:transcriptMode="alwaysScroll"
+        tools:listheader="@layout/message_sent"
+        tools:listitem="@layout/message_received"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:id="@+id/input_layout">
+
+        <EditText
+            android:id="@+id/message_input"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ask_anything"
+            android:orientation="horizontal"/>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="48dp">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/attach_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:src="@android:drawable/ic_input_add"/>
+                <TextView
+                    android:id="@+id/img_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:background="@drawable/imgcount"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:gravity="center"
+                    android:paddingBottom="4dp"
+                    android:paddingTop="4dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:width="22dp"
+                    android:height="22dp"
+                    android:visibility="gone"
+                    />
+            </FrameLayout>
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textOn="@string/thinking"
+                android:textOff="@string/thinking"
+                android:checked="false"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:layout_marginBottom="0dp"
+                android:id="@+id/thinking"
+                android:visibility="visible"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:text="@string/thinking"
+                android:checked="false"
+                android:visibility="gone"/>
+
+            <!-- We can use a View (API 1) the same way as a Space (API 14) -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"/>
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:id="@+id/waiting"
+                android:visibility="gone"/>
+
+            <ImageButton
+                android:id="@+id/send_button"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:src="@android:drawable/ic_menu_send"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

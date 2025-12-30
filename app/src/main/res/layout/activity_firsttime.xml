@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ViewFlipper
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_flipper"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:flipInterval="1500"
+    android:inAnimation="@android:anim/slide_in_left"
+    android:outAnimation="@android:anim/slide_out_right">
+<!--switch between screens in code -->
+    <include layout="@layout/activity_firsttime_1" />
+    <include layout="@layout/activity_firsttime_2" />
+    <include layout="@layout/activity_firsttime_3" />
+    <include layout="@layout/activity_firsttime_4" />
+</ViewFlipper>

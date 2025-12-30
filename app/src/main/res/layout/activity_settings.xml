@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:text="@string/settings"
+                android:paddingBottom="10dp"/>
+
+            <Spinner
+                android:id="@+id/api_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:paddingBottom="23dp">
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_api_key"
+                    android:inputType="textPassword"
+                    android:layout_weight="1"
+                    android:id="@+id/apiKey"/>
+
+                <!--Not implemented for now-->
+                <Button
+                    android:id="@+id/Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="@string/from_file"
+                    android:visibility="gone">
+                </Button>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_model"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+            <Spinner
+                android:id="@+id/chat_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/thinking_model"
+                android:textStyle="bold"
+                android:textSize="16sp"/>
+            <Spinner
+                android:id="@+id/think_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/update_delay"
+                android:textSize="16sp"/>
+            <EditText
+                android:layout_width="105dp"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:inputType="number"
+                android:id="@+id/update_delay"
+                android:hint="100–1000"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/shrink_thinking"
+                android:id="@+id/shrinkThinking"/>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/shrink_thinking_desc"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/change_system"
+                android:id="@+id/changeSystemPrompt"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@android:string/cancel"
+            android:id="@+id/cancel"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@android:string/ok"
+            android:id="@+id/ok"/>
+    </LinearLayout>
+
+</LinearLayout>
