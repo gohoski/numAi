@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +103,11 @@ class ApiService {
                     if (response.isSuccessful()) {
                         deliverSuccess(callback, new ApiResult(model, response.getBody()));
                     } else {
-                        deliverError(callback, new ApiError(ctx.getString(hasImg ? R.string.fail_send_vision : R.string.fail_send, response.getStatusCode()+"")));
+                        String errorBody = "no body";
+                        try {
+                            errorBody = apiClient.readInputStreamToString(response.getBody());
+                        } catch(IOException ignored) {}
+                        deliverError(callback, new ApiError(ctx.getString(hasImg ? R.string.fail_send_vision : R.string.fail_send, response.getStatusCode() + " " + errorBody)));
                     }
                 } catch (ApiError e) {
                     deliverError(callback, e);

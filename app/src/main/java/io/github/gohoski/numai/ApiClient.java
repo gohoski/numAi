@@ -21,7 +21,6 @@ class ApiClient {
     private final Context context;
 
     ApiClient(Context context) {
-        // Use application context to avoid memory leaks
         this.context = context.getApplicationContext();
     }
 
@@ -39,20 +38,14 @@ class ApiClient {
             connection.setRequestProperty("Authorization", "Bearer " + config.getApiKey());
             connection.setRequestProperty("User-Agent", "numAi/" + BuildConfig.VERSION_NAME + " (https://github.com/gohoski/numai)");
             connection.setRequestProperty("Accept", "application/json");
-
-            // Add all headers from the request
             for (Map.Entry<String, String> entry : request.getHeaders().entrySet()) {
                 connection.setRequestProperty(entry.getKey(), entry.getValue());
             }
-
             if ("POST".equals(request.getMethod())) {
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
             }
-
             connection.setConnectTimeout(15000);
-
-            // Write request body for POST
             if ("POST".equals(request.getMethod()) && request.getBody() != null && request.getBody().length() != 0) {
                 OutputStream outputStream = null;
                 try {
@@ -63,28 +56,16 @@ class ApiClient {
                     if (outputStream != null) {
                         try {
                             outputStream.close();
-                        } catch (IOException ignored) {
-                            // Ignore close exception
-                        }
+                        } catch (IOException ignored) {}
                     }
                 }
             }
-
-            // Get response
             int statusCode = connection.getResponseCode();
-
-            // Get response stream
             if (statusCode >= 200 && statusCode < 300) {
                 inputStream = connection.getInputStream();
             } else {
                 inputStream = connection.getErrorStream();
-                BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-                String line = null;
-                while((line = in.readLine()) != null) {
-                    System.out.println(line);
-                }
             }
-
             // Wrap the input stream with our custom stream that closes the connection
             ConnectionInputStream connStream = new ConnectionInputStream(inputStream, connection);
 
@@ -119,15 +100,12 @@ class ApiClient {
             return readInputStreamToString(response.getBody());
         } catch (Exception e) {
             e.printStackTrace();
-            throw new ApiError(String.format(context.getString(R.string.errorNetwork), e.getMessage()));
+            throw new ApiError(e.getMessage());
         } finally {
-            // Ensure the input stream is closed
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (IOException ignored) {
-                    // Ignore close exception
-                }
+                } catch (IOException ignored) {}
             }
         }
     }
@@ -135,11 +113,10 @@ class ApiClient {
     /**
      * Helper method to convert InputStream to String
      */
-    private String readInputStreamToString(InputStream inputStream) throws IOException {
+    String readInputStreamToString(InputStream inputStream) throws IOException {
         if (inputStream == null) {
             return "";
         }
-
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int bytesRead;
@@ -149,6 +126,11 @@ class ApiClient {
             }
         } finally {
             outputStream.close();
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException ignored) {}
+            }
         }
         return outputStream.toString("UTF-8");
     }

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,21 +17,19 @@ import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Gleb on 27.09.2025.
@@ -45,6 +44,7 @@ public class FirstTimeActivity extends Activity {
     private ConfigManager apiConfig;
     private Context context;
     private Spinner spinner;
+    private EditText keyText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +100,9 @@ public class FirstTimeActivity extends Activity {
         View screen3 = viewFlipper.getChildAt(2);
         Button backButton3 = (Button) screen3.findViewById(R.id.back);
         Button nextButton3 = (Button) screen3.findViewById(R.id.next);
-        final EditText keyText = (EditText) screen3.findViewById(R.id.apiKey);
+        keyText = (EditText) screen3.findViewById(R.id.apiKey);
         spinner = (Spinner) findViewById(R.id.provider_spinner);
-        SpinnerHelper.setupApiSpinner(context, spinner, apiConfig, new SpinnerHelper.ApiSelectionCallback() {
+        SettingsHelper.setupApiSpinner(context, spinner, apiConfig, new SettingsHelper.ApiSelectionCallback() {
             @Override
             public void onApiSelected(String api) {
                 System.out.println(api);
@@ -148,6 +148,31 @@ public class FirstTimeActivity extends Activity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
+        screen3.findViewById(R.id.from_file).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/plain");
+                startActivityForResult(Intent.createChooser(intent, getString(R.string.select_txt)), 2);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                try {
+                    InputStream is = getContentResolver().openInputStream(uri);
+                    keyText.setText(new Scanner(is, "UTF-8").useDelimiter("\\A").next());
+                    Toast.makeText(this, R.string.key_success, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     private void showNextScreen() {
@@ -248,14 +273,6 @@ public class FirstTimeActivity extends Activity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            switch (viewFlipper.getDisplayedChild()) {
-                case 0: finish(); break;
-                case 3: break;
-                default: viewFlipper.showPrevious();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+        return keyCode!=KeyEvent.KEYCODE_HOME || super.onKeyDown(keyCode, event);
     }
 }

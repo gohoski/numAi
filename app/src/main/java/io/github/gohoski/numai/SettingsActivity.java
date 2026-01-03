@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by Gleb on 15.10.2025.
@@ -38,7 +41,7 @@ public class SettingsActivity extends Activity {
         setContentView(R.layout.activity_settings);
         context = this;
         config = ConfigManager.getInstance();
-        Config conf = config.getConfig();
+        final Config conf = config.getConfig();
         api = new ApiService(this);
         systemPrompt = conf.getSystemPrompt();
 
@@ -52,9 +55,10 @@ public class SettingsActivity extends Activity {
         });
 
         apiSpinner = (Spinner) findViewById(R.id.api_spinner);
-        SpinnerHelper.setupApiSpinner(context, apiSpinner, config, new SpinnerHelper.ApiSelectionCallback() {
+        SettingsHelper.setupApiSpinner(context, apiSpinner, config, new SettingsHelper.ApiSelectionCallback() {
             @Override
             public void onApiSelected(String api) {
+                fetched = false;
                 System.out.println(api);
             }
         });
@@ -107,13 +111,40 @@ public class SettingsActivity extends Activity {
         findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                config.setConfig(new Config(ApiManager.getUrlByName(apiSpinner.getSelectedItem().toString()),
-                    keyText.getText().toString(), chatSpinner.getSelectedItem().toString(),
-                    thinkSpinner.getSelectedItem().toString(),
-                    shrinkThink.isChecked(), systemPrompt, Integer.parseInt(updateDelay.getText().toString())));
-                Intent intent = new Intent(context, MainActivity.class);
-                startActivity(intent);
-                finish();
+                final String urlByName = ApiManager.getUrlByName(apiSpinner.getSelectedItem().toString());
+                if (conf.getBaseUrl().equals(urlByName)) {
+                    config.setConfig(new Config(urlByName,
+                            keyText.getText().toString(), chatSpinner.getSelectedItem().toString(),
+                            thinkSpinner.getSelectedItem().toString(),
+                            shrinkThink.isChecked(), systemPrompt, Integer.parseInt(updateDelay.getText().toString())));
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (!fetched) {
+                    final Loading loading = new Loading(context);
+                    final String orig = config.getConfig().getBaseUrl();
+                    config.updateBaseUrl(urlByName);
+                    api.getModels(new ApiCallback<ArrayList<String>>() {
+                        @Override
+                        public void onSuccess(ArrayList<String> models) {
+                            config.setConfig(new Config(urlByName,
+                                    keyText.getText().toString(), ModelSelector.selectChatModel(models),
+                                    ModelSelector.selectThinkingModel(models),
+                                    shrinkThink.isChecked(), systemPrompt, Integer.parseInt(updateDelay.getText().toString())));
+                            loading.dismiss();
+                            Intent intent = new Intent(context, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onError(ApiError error) {
+                            error.printStackTrace();
+                            Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();loading.dismiss();
+                            config.updateBaseUrl(orig);
+                        }
+                    });
+                }
             }
         });
 
@@ -146,13 +177,38 @@ public class SettingsActivity extends Activity {
             }
         });
 
+        findViewById(R.id.from_file).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("text/plain");
+                startActivityForResult(Intent.createChooser(intent, getString(R.string.select_txt)), 2);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 2 && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
+            if (uri != null) {
+                try {
+                    InputStream is = getContentResolver().openInputStream(uri);
+                    keyText.setText(new Scanner(is, "UTF-8").useDelimiter("\\A").next());
+                    Toast.makeText(this, R.string.key_success, Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     private void loadModels(final Spinner spinner) {
-        if (!keyText.getText().toString().equals(config.getConfig().getApiKey())) {
-            Toast.makeText(this, R.string.change_key_pls, Toast.LENGTH_LONG).show();
-            return;
-        }
+//        if (!keyText.getText().toString().equals(config.getConfig().getApiKey())) {
+//            Toast.makeText(this, R.string.change_key_pls, Toast.LENGTH_LONG).show();
+//            return;
+//        }
         if (fetched) {
             spinner.performClick();
             return;
@@ -172,7 +228,7 @@ public class SettingsActivity extends Activity {
                 Config conf = config.getConfig();
                 chatSpinner.setSelection(result.indexOf(conf.getChatModel()));
                 thinkSpinner.setSelection(result.indexOf(conf.getThinkingModel()));
-                loading.hide();
+                loading.dismiss();
                 fetched = true;
                 spinner.performClick();
             }
@@ -180,6 +236,8 @@ public class SettingsActivity extends Activity {
             @Override
             public void onError(ApiError error) {
                 error.printStackTrace();
+                loading.dismiss();
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

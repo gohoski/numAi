@@ -1,7 +1,7 @@
 # numAi
 **English** / [русский](README.ru.md) 
 
-A simple AI app compatible with **Android 1.0+**. Access ChatGPT, DeepSeek, Gemini, Grok, Qwen, GLM, and other LLMs in one simple app on your legacy device.
+A simple AI app compatible with **Android 1.0+** with support for deep thinking, image perception, and various APIs. Access ChatGPT, DeepSeek, Gemini, Grok, Qwen, GLM, and other LLMs in one simple app on your legacy device.
 * **Telegram channel with updates**: [English @AppDataEN](https://t.me/AppDataEN) / [русский @AppDataApps](https://t.me/AppDataApps)
 * **[Retro Android Group](https://t.me/retroandroidgroup)** on Telegram
 
@@ -10,22 +10,24 @@ A simple AI app compatible with **Android 1.0+**. Access ChatGPT, DeepSeek, Gemi
 ![Screenshot](img/scr1.png) ![Screenshot](img/scr2.png) ![Screenshot](img/scr3.png)
 
 ## 📥 Download
-* [GitHub Releases](https://github.com/gohoski/numAi/releases) *(Recommended)*
+* [GitHub Releases](https://github.com/gohoski/numAi/releases)
+* [OldMarket](http://oldmarket.store/app.php?id=410)
 * [4PDA](https://4pda.to/forum/index.php?showtopic=1116157)
+* [XDA](https://xdaforums.com/t/app-1-0-numai-ai-app-for-legacy-android.4774257/)
 * Telegram (link at the top of the README)
 
 > [!IMPORTANT]  
-> Please note that the app was developed for Android <10, so it may work unstably or display incorrectly on newer versions. However, you can still report issues for newer versions of Android.
+> Please note that the app was developed for Android <8, so it may work unstably or display incorrectly on newer versions. However, you can still report issues for newer versions of Android.
 
 ## Features
 * Support of various APIs and models that support the OpenAI format (i.e. most LLM APIs)
 * Thinking mode (switch between chat and thinking model)
 * Vision (image attachments)
 * Ability to change the system prompt
+* Importing API key from file
 ### TODO
 * Markdown formatting support
 * File attachments
-* Import API key from file
 
 ## Reporting bugs
 **Report bugs in the [Issues](https://github.com/gohoski/numAi/issues) tab!** Don't forget to specify which version of Android you encountered the bug on.
@@ -40,8 +42,8 @@ A simple AI app compatible with **Android 1.0+**. Access ChatGPT, DeepSeek, Gemi
 * Thinking model — `deepseek-v3.2` or `gemini-3-flash` or `glm-4.7`
 ### Notes
 * Only 'vision' models support images — if an image is not processed by the AI, try switching the model to Qwen3-VL-235B, GPT-5 mini, Gemini 3, or any other vision model.
-* Models with `Instruct` in the name do not support Thinking mode, and models with `Thinking` only support Thinking mode. Some models only support either thinking (e.g., MiniMax M2 and Gemini 3 Pro) or chat, so if you choose the wrong one, there may be display issues—please enter correct models.
-* Gemini outputs text slowly and does not show the thought process. This is a quirk of API due to Google's decisions.
+* Models with `Instruct` in the name do not support Thinking mode, and models with `Thinking` only support Thinking mode. Some models only support either thinking (e.g., MiniMax M2 and Gemini 3 Pro) or chat, so if you choose the wrong one, there may be display issues—please enter models correctly.
+* Gemini outputs text slowly and sometimes does not show the thought process. This is a quirk of API due to Google's decisions.
 
 ## API key setup guide
 All of the following APIs have free quotas—no payment is required.
@@ -59,7 +61,7 @@ All of the following APIs have free quotas—no payment is required.
 
 ### Ollama Cloud
 > [!TIP]  
-> This API doesn't use Cloudflare and is **recommended to use** on Android 1.0–2.2. This provider also has vision models (models that can see images; `Qwen3-VL-235B`).
+> This API doesn't use Cloudflare and is **recommended to use** on Android 1.0+. This provider also has vision models (models that can see images; `Qwen3-VL-235B`).
 
 1. On a modern browser, go to [signin.ollama.com/sign-up](https://signin.ollama.com/sign-up) and create an account.
 2. After logging in, go to [ollama.com/settings/keys](https://ollama.com/settings/keys).

@@ -100,6 +100,8 @@ class MessageAdapter extends ArrayAdapter<Message> {
         holder.messageText.setText(displayContent);
         holder.llm.setText(message.getLlm());
 
+        //holder.messageText.setSingleLine(false);
+
         if (thinkingContent.length() != 0) {
             holder.thinkingLayout.setVisibility(View.VISIBLE);
             holder.thinkingProcess.setText(thinkingContent);

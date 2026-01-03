@@ -11,15 +11,15 @@
     <string name="skip">^ Skip</string>
     <string name="voidaisetup">VoidAI API key setup</string>
     <string name="firsttime_1">numAi brings modern LLMs (ChatGPT, DeepSeek, Gemini and more) to your old Android device.\n\nTo start, you\'ll need an API key. This app will guide you through the process. All you need is a modern smartphone or PC.\n\nThe guide will use the free VoidAI provider. If you already have an API key or use another provider, press the Skip button.</string>
-    <string name="firsttime_2">1. On a modern browser, go to the following URL and create an account.\n<b>voidai.app/register</b>\n2. After logging in, navigate to the <b>API Keys</b> section in your dashboard.\n3. Click <b>Generate New API Key</b>.\n4. Copy the key that appears and transfer it to your phone using one of these methods:\n\n<b>Method 1: File transfer</b>\n• Create a text file with only the API key and save it.\n• Transfer the file to your phone via USB, Bluetooth, gtrxac.fi/fh or similar.\n• <!--You will be able to import the key from the file on the next screen.-->Open the file on your phone, copy the key and paste it on the next screen.\n\n<b>Method 2: adb</b>\n• On the <b>next screen</b>, press on the text input box, and paste the key using this command:\n<b>adb shell input text API_KEY</b></string>
+    <string name="firsttime_2">1. On a modern browser, go to the following URL and create an account.\n<b>voidai.app/register</b>\nIf you use Gmail, enter your email without the dots before @gmail.com.\n2. After logging in, navigate to the <b>API Keys</b> section in your dashboard.\n3. Click <b>Generate New API Key</b>.\n4. Copy the key that appears and transfer it to your phone using one of these methods:\n\n<b>Method 1: File transfer</b>\n• Create a text file with only the API key and save it.\n• Transfer the file to your phone via USB, Bluetooth, gtrxac.fi/fh or similar.\n• You will be able to import the key from the file on the next screen.\n\n<b>Method 2: adb</b>\n• On the <b>next screen</b>, press on the text input box, and paste the key using this command:\n<b>adb shell input text API_KEY</b></string>
     <string name="hello_user">Hello, User</string>
     <string name="cloudflare_title">Android 1.0–2.2 Warning</string>
-    <string name="cloudflare_msg">Website protection services such as Cloudflare block TLS connections from Java 5, considering them unsafe. Most AI platforms, including VoidAI, use such protections, so you may not be able to connect to them from your device.\n\n<b>You just need to use a different API</b> — for example, Ollama (recommended), Baseten or Upstage. These services don\'t block your device, but registration with them may differ and be more difficult.\n\nDetailed instructions await you on the numAi GitHub page.\n</string>
+    <string name="cloudflare_msg">Website protection services such as Cloudflare block connections from Android &#60;2.3, as they consider them unsafe. Most AI platforms, including VoidAI, use such protections, so you may not be able to connect to them from your device and you have to use something else.\n\n<b>You just need to use a different API</b> — for example, Ollama. It doesn\'t block your device, but registration with it may differ.\n\nDetailed instructions await you on the numAi GitHub page.\ngithub.com/gohoski/numAi\n</string>
     <string name="loading">Loading</string>
     <string name="api_key_setup">API key setup</string>
     <string name="enter_api_key">Enter API key</string>
     <string name="from_file">From file</string>
-    <string name="checking_api_key">Checking API key&#8230;</string>
+    <string name="checking_api_key">Getting models&#8230;</string>
     <string name="start_chatting">Start chatting</string>
     <string name="api_key_error">An error happened. Check your API key and try again.</string>
     <string name="about">About</string>
@@ -35,7 +35,11 @@
     <string name="welcome">Welcome to numAi!</string>
     <string name="text_copied">Text copied to clipboard</string>
     <string name="bad_url">Incorrect URL!</string>
-    <string name="fail_send">Failed to send message: %s</string>
-    <string name="fail_send_vision">Failed to send message: %s. <b>For images,</b> change the model to Qwen3-VL-235B, GPT-5, or Gemini 3.</string>
+    <string name="fail_send">Failed to send message:\n%s</string>
+    <string name="fail_send_vision">Failed to send message:\n%s\n\n<b>For images,</b> change the model to Qwen3-VL-235B, GPT-5, or Gemini 3.</string>
     <string name="update_delay">UI update delay in milliseconds</string>
+    <string name="select_picture">Attach an image</string>
+    <string name="select_txt">Select file</string>
+    <string name="key_success">Key successfully imported</string>
+    <string name="api_note">Note: even if the models are successfully retrieved on the next screen, this does not mean that you have definitely entered the key correctly. If you have entered the key incorrectly, you will see a corresponding error in the chat interface.</string>
 </resources>

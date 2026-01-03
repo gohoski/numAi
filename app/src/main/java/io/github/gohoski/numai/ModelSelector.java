@@ -18,7 +18,7 @@ class ModelSelector {
             "qwen3-235b", "grok-4-fast", "grok-4", "grok-3", "gpt-5-nano"
     );
     private static final List<String> THINKING_MODELS = Arrays.asList(
-            "deepseek-v3.2", "gemini-3-pro", "glm-4.7", "deepseek-v3.1-terminus", "deepseek-v3.1",
+            "deepseek-v3.2", "gemini-3-flash", "glm-4.7", "deepseek-v3.1-terminus", "deepseek-v3.1",
             "qwen3-vl", "qwen3-235b-a22b-thinking-2507", "qwen3-next-80b-a3b-thinking", "gemini-2.5-pro",
             "glm-4.6", "grok-4", "grok-3-mini", "solar-pro2", "gpt-5-nano"
     );

@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                startActivityForResult(Intent.createChooser(intent, "Select picture"), REQUEST_CODE_PICK_IMAGE);
+                startActivityForResult(Intent.createChooser(intent, getString(R.string.select_picture)), REQUEST_CODE_PICK_IMAGE);
             }
         });
 
@@ -298,7 +298,7 @@ public class MainActivity extends Activity {
 
     private void handleStreamError(String errorMsg) {
         progressBar.setVisibility(View.GONE);
-        Message error = new Message(Role.ASSISTANT, errorMsg, getString(R.string.error)); // Assuming error string res exists
+        Message error = new Message(Role.ASSISTANT, errorMsg, getString(R.string.error));
         error.setAsError();
         MessageManager.getInstance().addMessage(error);
         resetUIState();
@@ -328,7 +328,7 @@ public class MainActivity extends Activity {
                 String contentStr = null;
                 try {
                     contentStr = delta.getString("content");
-                } catch(JSONException _) {}
+                } catch(JSONException ignored) {}
                 String reasoningStr = extractJSONReasoning(delta);
                 boolean hasUpdates = false;
                 if (thinkingEnabled) {
@@ -478,10 +478,10 @@ public class MainActivity extends Activity {
     private String extractJSONReasoning(JSONObject delta) {
         try {
             return delta.getString("reasoning");
-        } catch (JSONException e) {
+        } catch (Exception e) {
             try {
                 return delta.getArray("reasoning_content").getObject(0).getString("thinking");
-            } catch(JSONException _) {
+            } catch(Exception _) {
                 return null;
             }
         }

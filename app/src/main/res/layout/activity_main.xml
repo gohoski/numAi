@@ -39,7 +39,7 @@
 
             <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="fill_parent">
                 <ImageButton
                     android:id="@+id/attach_button"
                     android:layout_width="wrap_content"

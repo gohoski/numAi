@@ -32,9 +32,7 @@ class ApiManager {
 
     static String getUrlByName(String name) {
         String s = NAME_TO_URL.get(name);
-        if (s == null)
-            return name;
-        return s;
+        return s == null ? name : s;
     }
 
     static String getNameByUrl(String url) {

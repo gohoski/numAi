@@ -22,7 +22,7 @@ import java.util.List;
  * Helper class to not duplicate code.
  */
 
-class SpinnerHelper {
+class SettingsHelper {
     static void setupApiSpinner(
             final Context context,
             final Spinner spinner,

@@ -37,15 +37,17 @@
                     android:layout_weight="1"
                     android:id="@+id/apiKey"/>
 
-                <!--Not implemented for now-->
                 <Button
-                    android:id="@+id/Button"
+                    android:id="@+id/from_file"
                     android:layout_width="wrap_content"
                     android:layout_height="fill_parent"
-                    android:text="@string/from_file"
-                    android:visibility="gone">
+                    android:text="@string/from_file">
                 </Button>
             </LinearLayout>
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/api_note"/>
         </LinearLayout>
     </ScrollView>
 
