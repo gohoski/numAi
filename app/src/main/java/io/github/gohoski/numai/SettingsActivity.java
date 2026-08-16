@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -25,6 +26,7 @@ import io.github.gohoski.numai.api.ApiCallback;
 import io.github.gohoski.numai.api.ApiError;
 import io.github.gohoski.numai.api.ApiManager;
 import io.github.gohoski.numai.api.ApiService;
+import io.github.gohoski.numai.api.GeminiImageService;
 import io.github.gohoski.numai.data.ConfigManager;
 import io.github.gohoski.numai.model.Config;
 import io.github.gohoski.numai.ui.Loading;
@@ -42,7 +44,8 @@ public class SettingsActivity extends Activity {
     String lastChatModel, lastThinkModel;
     CheckBox shrinkThink, webSearch, webFetch, disableToolsImg;
     String systemPrompt;
-    EditText updateDelay;
+    EditText updateDelay, geminiImageKey, geminiImageModel;
+    Button fetchGeminiImageModels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,6 +124,18 @@ public class SettingsActivity extends Activity {
         updateDelay = (EditText) findViewById(R.id.update_delay);
         updateDelay.setText(conf.getUpdateDelay()+"");
 
+        geminiImageKey = (EditText) findViewById(R.id.gemini_image_api_key);
+        geminiImageKey.setText(config.getGeminiImageApiKey());
+        geminiImageModel = (EditText) findViewById(R.id.gemini_image_model);
+        geminiImageModel.setText(config.getGeminiImageModel());
+        fetchGeminiImageModels = (Button) findViewById(R.id.fetch_gemini_image_models);
+        fetchGeminiImageModels.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fetchGeminiImageModels();
+            }
+        });
+
         // Restore saved instance state on rotation
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("api_key") && keyText != null) {
@@ -131,6 +146,12 @@ public class SettingsActivity extends Activity {
             }
             if (savedInstanceState.containsKey("update_delay") && updateDelay != null) {
                 updateDelay.setText(savedInstanceState.getString("update_delay"));
+            }
+            if (savedInstanceState.containsKey("gemini_image_key") && geminiImageKey != null) {
+                geminiImageKey.setText(savedInstanceState.getString("gemini_image_key"));
+            }
+            if (savedInstanceState.containsKey("gemini_image_model") && geminiImageModel != null) {
+                geminiImageModel.setText(savedInstanceState.getString("gemini_image_model"));
             }
             if (savedInstanceState.containsKey("shrink_think") && shrinkThink != null) {
                 shrinkThink.setChecked(savedInstanceState.getBoolean("shrink_think"));
@@ -178,6 +199,7 @@ public class SettingsActivity extends Activity {
         findViewById(R.id.ok).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                saveGeminiImageSettings();
                 final String urlByName = ApiManager.getUrlByName(apiSpinner.getSelectedItem().toString());
                 if (conf.getBaseUrl().equals(urlByName)) {
                     config.setConfig(new Config(urlByName,
@@ -280,6 +302,12 @@ public class SettingsActivity extends Activity {
         }
         if (updateDelay != null) {
             outState.putString("update_delay", updateDelay.getText().toString());
+        }
+        if (geminiImageKey != null) {
+            outState.putString("gemini_image_key", geminiImageKey.getText().toString());
+        }
+        if (geminiImageModel != null) {
+            outState.putString("gemini_image_model", geminiImageModel.getText().toString());
         }
         if (shrinkThink != null) {
             outState.putBoolean("shrink_think", shrinkThink.isChecked());
@@ -421,6 +449,50 @@ public class SettingsActivity extends Activity {
             }
         }
         return -1;
+    }
+
+    private void saveGeminiImageSettings() {
+        if (geminiImageKey != null) {
+            config.updateGeminiImageApiKey(geminiImageKey.getText().toString());
+        }
+        if (geminiImageModel != null) {
+            config.updateGeminiImageModel(geminiImageModel.getText().toString());
+        }
+    }
+
+    private void fetchGeminiImageModels() {
+        // Save the text currently on screen so a newly pasted key can be used immediately.
+        saveGeminiImageSettings();
+        final Loading loading = new Loading(context);
+        GeminiImageService gemini = new GeminiImageService(context);
+        gemini.getAvailableImageModels(new ApiCallback<ArrayList<String>>() {
+            @Override
+            public void onSuccess(final ArrayList<String> models) {
+                loading.dismiss();
+                if (models == null || models.isEmpty()) {
+                    Toast.makeText(context, R.string.gemini_image_models_empty, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                final String[] modelNames = models.toArray(new String[models.size()]);
+                new AlertDialog.Builder(context)
+                        .setTitle(R.string.choose_gemini_image_model)
+                        .setItems(modelNames, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (which >= 0 && which < modelNames.length) {
+                                    geminiImageModel.setText(modelNames[which]);
+                                }
+                            }
+                        })
+                        .show();
+            }
+
+            @Override
+            public void onError(ApiError error) {
+                loading.dismiss();
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void loadModels(final Spinner spinner) {

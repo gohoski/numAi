@@ -105,6 +105,10 @@ public class ChatManager {
                         }
                     }
                 }
+                String generatedImage = msg.getOutputImage();
+                if (generatedImage != null && !generatedImage.startsWith("data:image")) {
+                    context.deleteFile(generatedImage);
+                }
             }
         }
 
@@ -131,6 +135,10 @@ public class ChatManager {
                                 }
                             }
                         }
+                        String generatedImage = msg.getOutputImage();
+                        if (generatedImage != null && !generatedImage.startsWith("data:image")) {
+                            referencedFiles.add(generatedImage);
+                        }
                     }
                 }
 
@@ -138,7 +146,8 @@ public class ChatManager {
                 String[] files = ctx.fileList();
                 if (files != null) {
                     for (String file : files) {
-                        if (file.startsWith("img_") && file.endsWith(".jpg")) {
+                        if ((file.startsWith("img_") || file.startsWith("gemini_img_")) &&
+                                (file.endsWith(".jpg") || file.endsWith(".png"))) {
                             if (!referencedFiles.contains(file)) {
                                 ctx.deleteFile(file);
                             }

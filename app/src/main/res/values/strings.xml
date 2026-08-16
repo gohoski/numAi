@@ -68,4 +68,24 @@
     <string name="search_engine">Search engine</string>
     <string name="search_engine_">Bing is supported on Android 1.0+. DuckDuckGo requires Wolfius for Android &lt;4.4, but sometimes can give more results.</string>
     <string name="regenerate">Regenerate</string>
+    <string name="latex_system_instruction">When mathematical notation is useful, write it in LaTeX: use $...$ for inline math and $$...$$ for displayed equations. Do not put formulas inside Markdown code fences.</string>
+    <string name="gemini_image_toggle">Image</string>
+    <string name="gemini_image_prompt_hint">Describe the image to create or edit</string>
+    <string name="gemini_image_settings">Gemini image generation</string>
+    <string name="gemini_image_settings_desc">Uses your own billed Gemini API key directly with Google. The key is kept only in this app and is never included in the APK.</string>
+    <string name="gemini_image_key_hint">Gemini API key for image generation</string>
+    <string name="gemini_image_model_hint">Gemini image model</string>
+    <string name="fetch_gemini_image_models">Find available Gemini image models</string>
+    <string name="choose_gemini_image_model">Choose an image model</string>
+    <string name="gemini_image_models_empty">No Gemini image models are available to this API key.</string>
+    <string name="gemini_image_models_failed">Could not retrieve Gemini image models: %s</string>
+    <string name="gemini_image_key_required">Enter your Gemini image API key in Settings before generating an image.</string>
+    <string name="gemini_image_prompt_required">Describe the image you want to create or edit.</string>
+    <string name="gemini_image_failed">Gemini image generation failed: %s</string>
+    <string name="gemini_image_no_result">Gemini did not return an image. Check the prompt, your billing and the model selected.</string>
+    <string name="gemini_image_too_large">The generated image is too large for this device.</string>
+    <string name="gemini_image_save_failed">The generated image could not be saved. Check the available storage.</string>
+    <string name="gemini_image_done">Image generated.</string>
+    <string name="gemini_image_model_label">Gemini Image</string>
+    <string name="gemini_generated_image">Generated image</string>
 </resources>

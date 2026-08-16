@@ -69,4 +69,24 @@
     <string name="search_engine">Mecanismo de busca</string>
     <string name="search_engine_">O Bing é suportado no Android 1.0+. O DuckDuckGo requer o Wolfius no Android &lt;4.4, mas às vezes pode trazer mais resultados.</string>
     <string name="regenerate">Regerar</string>
+    <string name="latex_system_instruction">Quando a notação matemática for útil, escreva em LaTeX: use $...$ para matemática em linha e $$...$$ para equações destacadas. Não coloque fórmulas em blocos de código Markdown.</string>
+    <string name="gemini_image_toggle">Imagem</string>
+    <string name="gemini_image_prompt_hint">Descreva a imagem que deseja criar ou editar</string>
+    <string name="gemini_image_settings">Geração de imagens Gemini</string>
+    <string name="gemini_image_settings_desc">Usa diretamente com o Google a sua própria chave da API Gemini com faturamento. A chave fica apenas neste aplicativo e nunca é incluída no APK.</string>
+    <string name="gemini_image_key_hint">Chave da API Gemini para gerar imagens</string>
+    <string name="gemini_image_model_hint">Modelo Gemini de imagens</string>
+    <string name="fetch_gemini_image_models">Buscar modelos de imagem Gemini</string>
+    <string name="choose_gemini_image_model">Escolha um modelo de imagem</string>
+    <string name="gemini_image_models_empty">Não há modelos Gemini de imagem disponíveis para esta chave de API.</string>
+    <string name="gemini_image_models_failed">Não foi possível obter os modelos Gemini de imagem: %s</string>
+    <string name="gemini_image_key_required">Informe a chave da API Gemini de imagens nas Configurações antes de gerar uma imagem.</string>
+    <string name="gemini_image_prompt_required">Descreva a imagem que deseja criar ou editar.</string>
+    <string name="gemini_image_failed">Falha ao gerar imagem com o Gemini: %s</string>
+    <string name="gemini_image_no_result">O Gemini não retornou uma imagem. Verifique o prompt, o faturamento e o modelo selecionado.</string>
+    <string name="gemini_image_too_large">A imagem gerada é grande demais para este dispositivo.</string>
+    <string name="gemini_image_save_failed">Não foi possível salvar a imagem gerada. Verifique o espaço disponível.</string>
+    <string name="gemini_image_done">Imagem gerada.</string>
+    <string name="gemini_image_model_label">Gemini Imagem</string>
+    <string name="gemini_generated_image">Imagem gerada</string>
 </resources>

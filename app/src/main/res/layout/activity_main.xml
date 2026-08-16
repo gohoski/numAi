@@ -106,6 +106,16 @@
                 android:id="@+id/thinking"
                 android:visibility="visible"/>
 
+            <ToggleButton
+                android:id="@+id/image_generation"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:textOn="@string/gemini_image_toggle"
+                android:textOff="@string/gemini_image_toggle"
+                android:checked="false"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp" />
+
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"

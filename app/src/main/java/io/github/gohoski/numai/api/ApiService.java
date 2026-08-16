@@ -152,12 +152,13 @@ public class ApiService {
     private JSONArray buildMessages(List<Message> rawMessages, boolean[] hasImgHolder) {
         JSONArray messages = new JSONArray();
         String systemStr = config.getConfig().getSystemPrompt();
-        if (systemStr != null && systemStr.trim().length() != 0) {
-            JSONObject system = new JSONObject();
-            system.put("role", "system");
-            system.put("content", systemStr);
-            messages.add(system);
-        }
+        String latexInstruction = ctx.getString(R.string.latex_system_instruction);
+        if (systemStr == null || systemStr.trim().length() == 0) systemStr = latexInstruction;
+        else systemStr = systemStr.trim() + "\n\n" + latexInstruction;
+        JSONObject system = new JSONObject();
+        system.put("role", "system");
+        system.put("content", systemStr);
+        messages.add(system);
 
         int size = rawMessages.size();
         for (int i = 0; i < size; i++) {

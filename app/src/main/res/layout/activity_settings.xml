@@ -73,6 +73,43 @@
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:text="@string/gemini_image_settings"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginTop="12dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gemini_image_settings_desc"
+                android:layout_marginBottom="4dp" />
+
+            <EditText
+                android:id="@+id/gemini_image_api_key"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/gemini_image_key_hint"
+                android:inputType="textPassword"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/gemini_image_model"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/gemini_image_model_hint"
+                android:singleLine="true"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:id="@+id/fetch_gemini_image_models"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fetch_gemini_image_models"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:text="@string/update_delay"
                 android:textSize="16sp"/>
             <EditText

@@ -17,7 +17,9 @@ public class ConfigManager {
             KEY_WEB_SEARCH_ENABLED = "webSearchEnabled",
             KEY_WEB_FETCH_ENABLED = "webFetchEnabled",
             KEY_DISABLE_TOOLS_WITH_IMAGE = "disableToolsWithImage",
-            KEY_SEARCH_ENGINE = "searchEngine";
+            KEY_SEARCH_ENGINE = "searchEngine",
+            KEY_GEMINI_IMAGE_API_KEY = "geminiImageApiKey",
+            KEY_GEMINI_IMAGE_MODEL = "geminiImageModel";
 
     private static ConfigManager instance;
     private final SharedPreferences preferences;
@@ -105,5 +107,25 @@ public class ConfigManager {
 
     public boolean isConfigValid() {
         return config.isValid();
+    }
+
+    /** The Gemini image key is deliberately separate from the chat provider key. */
+    public String getGeminiImageApiKey() {
+        return preferences.getString(KEY_GEMINI_IMAGE_API_KEY, "");
+    }
+
+    public void updateGeminiImageApiKey(String apiKey) {
+        preferences.edit().putString(KEY_GEMINI_IMAGE_API_KEY,
+                apiKey == null ? "" : apiKey.trim()).commit();
+    }
+
+    public String getGeminiImageModel() {
+        return preferences.getString(KEY_GEMINI_IMAGE_MODEL, "gemini-3.1-flash-image");
+    }
+
+    public void updateGeminiImageModel(String model) {
+        String safeModel = model == null ? "" : model.trim();
+        if (safeModel.length() == 0) safeModel = "gemini-3.1-flash-image";
+        preferences.edit().putString(KEY_GEMINI_IMAGE_MODEL, safeModel).commit();
     }
 }
