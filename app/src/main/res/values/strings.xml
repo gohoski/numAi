@@ -66,6 +66,6 @@
     <string name="space_fail">There may be not enough storage space left. Please try deleting old chats and try again.</string>
     <string name="exit">Exit</string>
     <string name="search_engine">Search engine</string>
-    <string name="search_engine_">Bing is supported on Android 1.0+. DuckDuckGo requires Wolfius for Android &lt;4.4, but sometimes can give more results.</string>
+    <string name="search_engine_">Bing is supported on Android 1.0+. DuckDuckGo requires Wolfius for Android &lt;4.4, but sometimes can give more results. Yandex also works on Android 1.0+.</string>
     <string name="regenerate">Regenerate</string>
 </resources>

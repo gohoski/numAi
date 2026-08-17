@@ -116,7 +116,9 @@ public class SettingsActivity extends Activity {
         disableToolsImg.setChecked(conf.isDisableToolsWithImage());
 
         searchEngineSpinner = (Spinner) findViewById(R.id.search_engine_spinner);
-        searchEngineSpinner.setSelection("duckduckgo".equalsIgnoreCase(conf.getSearchEngine()) ? 1 : 0);
+        String savedEngine = conf.getSearchEngine();
+        int enginePos = "yandex".equalsIgnoreCase(savedEngine) ? 2 : ("duckduckgo".equalsIgnoreCase(savedEngine) ? 1 : 0);
+        searchEngineSpinner.setSelection(enginePos);
 
         updateDelay = (EditText) findViewById(R.id.update_delay);
         updateDelay.setText(conf.getUpdateDelay()+"");

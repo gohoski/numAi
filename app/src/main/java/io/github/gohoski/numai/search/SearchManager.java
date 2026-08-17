@@ -30,6 +30,8 @@ public class SearchManager {
         String name = ConfigManager.getInstance(context).getConfig().getSearchEngine();
         if ("duckduckgo".equalsIgnoreCase(name))
             return new DuckDuckGo();
+        if ("yandex".equalsIgnoreCase(name))
+            return new Yandex();
         return new Bing();
     }
 

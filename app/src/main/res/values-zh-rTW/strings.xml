@@ -64,7 +64,7 @@
     <string name="delete_chat_message">刪除「%s」？此操作無法復原。</string>
     <string name="web_fetch_">網頁抓取功能允許 LLM 透過 URL 取得網頁。要在 Android &lt;4.4 上正常運作，需要 Wolfius，因此僅建議在 Android 1.6+ 上使用此功能。複雜網站可能無法正常運作。</string>
     <string name="space_fail">儲存空間可能不足。請嘗試刪除舊聊天記錄後重試。</string>
-    <string name="search_engine_">Bing 在 Android 1.0+ 上受支援。DuckDuckGo 在 Android &lt;4.4 上需要 Wolfius，但有時能回傳更多結果。</string>
+    <string name="search_engine_">Bing 在 Android 1.0+ 上受支援。DuckDuckGo 在 Android &lt;4.4 上需要 Wolfius，但有時能回傳更多結果。Yandex 也支援 Android 1.0+。</string>
     <string name="regenerate">重新產生</string>
     <string name="disable_tools_img">附加圖片時停用工具</string>
     <string name="disable_tools_img_">啟用後，附加圖片時將不會向模型傳送網路搜尋與網路擷取工具，進而提高與視覺模型的相容性。</string>
