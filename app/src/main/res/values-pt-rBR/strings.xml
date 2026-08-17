@@ -67,6 +67,6 @@
     <string name="space_fail">Pode não haver espaço de armazenamento suficiente. Tente excluir conversas antigas e tente novamente.</string>
     <string name="exit">Sair</string>
     <string name="search_engine">Mecanismo de busca</string>
-    <string name="search_engine_">O Bing é suportado no Android 1.0+. O DuckDuckGo requer o Wolfius no Android &lt;4.4, mas às vezes pode trazer mais resultados.</string>
+    <string name="search_engine_">O Bing é suportado no Android 1.0+. O DuckDuckGo requer o Wolfius no Android &lt;4.4, mas às vezes pode trazer mais resultados. O Yandex também funciona no Android 1.0+.</string>
     <string name="regenerate">Regerar</string>
 </resources>

@@ -67,25 +67,26 @@ esac
 CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 
 # Determine the Java command to use to start the JVM.
-if [ -n "$JAVA_HOME" ] ; then
+# Try Java 8 first
+JAVA_8_HOME=/usr/lib/jvm/java-8-openjdk
+if [ -n "$JAVA_8_HOME" ] ; then
+    if [ -x "$JAVA_8_HOME/bin/java" ] ; then
+        JAVACMD="$JAVA_8_HOME/bin/java"
+    else
+        die "ERROR: JAVA_8_HOME is set but java executable not found at $JAVA_8_HOME/bin/java"
+    fi
+elif [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
         # IBM's JDK on AIX uses strange locations for the executables
         JAVACMD="$JAVA_HOME/jre/sh/java"
-    else
+    elif [ -x "$JAVA_HOME/bin/java" ] ; then
         JAVACMD="$JAVA_HOME/bin/java"
-    fi
-    if [ ! -x "$JAVACMD" ] ; then
-        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
-
-Please set the JAVA_HOME variable in your environment to match the
-location of your Java installation."
+    else
+        die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME"
     fi
 else
     JAVACMD="java"
-    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
-
-Please set the JAVA_HOME variable in your environment to match the
-location of your Java installation."
+    which java >/dev/null 2>&1 || die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH."
 fi
 
 # Increase the maximum file descriptors if we can.

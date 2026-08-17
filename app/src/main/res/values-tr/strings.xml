@@ -65,7 +65,7 @@
     <string name="space_fail">Yeterli depolama alanı kalmamış olabilir. Lütfen eski sohbetleri silmeyi deneyin ve tekrar deneyin.</string>
     <string name="exit">Çıkış</string>
     <string name="search_engine">Arama motoru</string>
-    <string name="search_engine_">Bing, Android 1.0+ üzerinde desteklenir. DuckDuckGo, Android &lt;4.4 için Wolfius gerektirir ancak bazen daha fazla sonuç verebilir.</string>
+    <string name="search_engine_">Bing, Android 1.0+ üzerinde desteklenir. DuckDuckGo, Android &lt;4.4 için Wolfius gerektirir ancak bazen daha fazla sonuç verebilir. Yandex de Android 1.0+ üzerinde çalışır.</string>
     <string name="regenerate">Yeniden Oluştur</string>
     <string name="disable_tools_img">Görsel eklendiğinde araçları devre dışı bırak</string>
     <string name="disable_tools_img_">Etkinleştirildiğinde, bir görsel eklendiğinde web arama ve web getirme araçları modele gönderilmez; bu da görsel (vision) modelleriyle uyumluluğu artırır.</string>

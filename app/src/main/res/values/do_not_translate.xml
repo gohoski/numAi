@@ -3,6 +3,7 @@
     <string-array name="search_engines" translatable="false">
         <item>Bing</item>
         <item>DuckDuckGo</item>
+        <item>Yandex</item>
     </string-array>
     <string name="app_name" translatable="false">numAi</string>
     <string name="about_cc" translatable="false">Creative Commons 3.0 Attribution License</string>
